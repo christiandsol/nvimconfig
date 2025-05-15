@@ -1,0 +1,130 @@
+return {
+  -- -- {
+  -- --   'folke/tokyonight.nvim',
+  -- --   lazy = false,
+  -- --   priority = 1000,
+  -- --   opts = {}, -- You can customize options here or omit it
+  -- --   config = function()
+  -- --     require('tokyonight').setup {
+  -- --       -- Example options:
+  -- --       style = 'night', -- or 'night', 'moon', 'day'
+  -- --       transparent = false,
+  -- --       terminal_colors = true,
+  -- --       styles = {
+  -- --         comments = { italic = true },
+  -- --         keywords = { italic = true },
+  -- --         functions = {},
+  -- --         variables = {},
+  -- --       },
+  -- --     }
+  -- --     vim.cmd.colorscheme 'tokyonight'
+  -- --   end,
+  -- -- },
+  -- --
+  --
+  -- -- 'ellisonleao/gruvbox.nvim',
+  -- -- priority = 1000,
+  -- -- config = function()
+  -- --   -- Default options:
+  -- --   require('gruvbox').setup {
+  -- --     terminal_colors = true, -- add neovim terminal colors
+  -- --     undercurl = true,
+  -- --     underline = true,
+  -- --     bold = true,
+  -- --     italic = {
+  -- --       strings = true,
+  -- --       emphasis = true,
+  -- --       comments = true,
+  -- --       operators = false,
+  -- --       folds = true,
+  -- --     },
+  -- --     strikethrough = true,
+  -- --     invert_selection = false,
+  -- --     invert_signs = false,
+  -- --     invert_tabline = false,
+  -- --     invert_intend_guides = false,
+  -- --     inverse = true, -- invert background for search, diffs, statuslines and errors
+  -- --     contrast = '', -- can be "hard", "soft" or empty string
+  -- --     palette_overrides = {},
+  -- --     overrides = {},
+  -- --     dim_inactive = false,
+  -- --     transparent_mode = false,
+  -- --   }
+  -- --   vim.cmd 'colorscheme gruvbox'
+  -- -- end,
+  --
+  -- 'rose-pine/neovim',
+  -- name = 'rose-pine',
+  -- priority = 1000,
+  -- config = function()
+  --   require('rose-pine').setup {
+  --     variant = 'main', -- auto, main, moon, or dawn
+  --     dark_variant = 'main', -- main, moon, or dawn
+  --     dim_inactive_windows = false,
+  --     extend_background_behind_borders = true,
+  --
+  --     enable = {
+  --       terminal = true,
+  --       legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+  --       migrations = true, -- Handle deprecated options automatically
+  --     },
+  --
+  --     styles = {
+  --       bold = true,
+  --       italic = true,
+  --       transparency = false,
+  --     },
+  --
+  --     groups = {
+  --       border = 'muted',
+  --       link = 'love',
+  --       panel = 'surface',
+  --
+  --       error = 'love',
+  --       hint = 'iris',
+  --       info = 'foam',
+  --       note = 'pine',
+  --       todo = 'rose',
+  --       warn = 'gold',
+  --
+  --       git_add = 'foam',
+  --       git_change = 'rose',
+  --       git_delete = 'love',
+  --       git_dirty = 'rose',
+  --       git_ignore = 'muted',
+  --       git_merge = 'iris',
+  --       git_rename = 'pine',
+  --       git_stage = 'iris',
+  --       git_text = 'rose',
+  --       git_untracked = 'subtle',
+  --
+  --       h1 = 'iris',
+  --       h2 = 'foam',
+  --       h3 = 'rose',
+  --       h4 = 'gold',
+  --       h5 = 'pine',
+  --       h6 = 'foam',
+  --     },
+  --     highlight_groups = {
+  --       Operator = { fg = 'pine' },
+  --       Delimeter = { fg = '#82435B' },
+  --       ['@punctuation.delimiter'] = { fg = '#82435B' },
+  --       ['@keyword.operator'] = { fg = '#82435B' },
+  --       ['@module.builtin'] = { fg = '#82435B' },
+  --       ['@module'] = { fg = '#82435B' },
+  --       ['@punctuation.bracket'] = { fg = '#82435B' },
+  --       ['@punctuation.special'] = { fg = '#82435B' },
+  --       ['@tag.delimiter'] = { fg = '#82435B' },
+  --       ['@string.special.symbol'] = { fg = '#82435B' },
+  --       Number = { fg = 'rose' },
+  --       ['@function.builtin'] = { fg = 'love' },
+  --       pythonBuiltin = { fg = 'love' },
+  --       pythonAttribute = { fg = '#31748f' },
+  --       cBlock = { fg = '#82435B' },
+  --     },
+  --
+  --     before_highlight = function(group, highlight, palette) end,
+  --   }
+  --   vim.cmd.colorscheme 'rose-pine'
+  -- end,
+}
