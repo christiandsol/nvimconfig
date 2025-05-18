@@ -1,130 +1,106 @@
 return {
-  -- -- {
-  -- --   'folke/tokyonight.nvim',
-  -- --   lazy = false,
-  -- --   priority = 1000,
-  -- --   opts = {}, -- You can customize options here or omit it
-  -- --   config = function()
-  -- --     require('tokyonight').setup {
-  -- --       -- Example options:
-  -- --       style = 'night', -- or 'night', 'moon', 'day'
-  -- --       transparent = false,
-  -- --       terminal_colors = true,
-  -- --       styles = {
-  -- --         comments = { italic = true },
-  -- --         keywords = { italic = true },
-  -- --         functions = {},
-  -- --         variables = {},
-  -- --       },
-  -- --     }
-  -- --     vim.cmd.colorscheme 'tokyonight'
-  -- --   end,
-  -- -- },
-  -- --
-  --
-  -- -- 'ellisonleao/gruvbox.nvim',
-  -- -- priority = 1000,
-  -- -- config = function()
-  -- --   -- Default options:
-  -- --   require('gruvbox').setup {
-  -- --     terminal_colors = true, -- add neovim terminal colors
-  -- --     undercurl = true,
-  -- --     underline = true,
-  -- --     bold = true,
-  -- --     italic = {
-  -- --       strings = true,
-  -- --       emphasis = true,
-  -- --       comments = true,
-  -- --       operators = false,
-  -- --       folds = true,
-  -- --     },
-  -- --     strikethrough = true,
-  -- --     invert_selection = false,
-  -- --     invert_signs = false,
-  -- --     invert_tabline = false,
-  -- --     invert_intend_guides = false,
-  -- --     inverse = true, -- invert background for search, diffs, statuslines and errors
-  -- --     contrast = '', -- can be "hard", "soft" or empty string
-  -- --     palette_overrides = {},
-  -- --     overrides = {},
-  -- --     dim_inactive = false,
-  -- --     transparent_mode = false,
-  -- --   }
-  -- --   vim.cmd 'colorscheme gruvbox'
-  -- -- end,
-  --
-  -- 'rose-pine/neovim',
-  -- name = 'rose-pine',
-  -- priority = 1000,
+  {
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
+      -- Load the colorscheme here.
+      -- Like many other themes, this one has different styles, and you could load
+      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+      require('tokyonight').setup {
+        style = 'night',
+        styles = {
+          comments = { italic = false }, -- Disable italics in comments
+        },
+        on_colors = function(colors)
+          colors.bg = '#191724'
+        end,
+      }
+      vim.cmd.colorscheme 'tokyonight-night'
+    end,
+  },
+  -- 'folke/tokyonight.nvim',
+  -- priority = 1000, -- Make sure to load this before all the other start plugins.
   -- config = function()
-  --   require('rose-pine').setup {
-  --     variant = 'main', -- auto, main, moon, or dawn
-  --     dark_variant = 'main', -- main, moon, or dawn
-  --     dim_inactive_windows = false,
-  --     extend_background_behind_borders = true,
+  --   local base = '#191724'
+  --   local surface = '#1f1d2e'
+  --   local overlay = '#26233a'
+  --   local muted = '#6e6a86'
+  --   local subtle = '#908caa'
+  --   local text = '#e0def4'
+  --   local love = '#eb6f92'
+  --   local gold = '#f6c177'
+  --   local rose = '#ebbcba'
+  --   local pine = '#31748f'
+  --   local foam = '#9ccfd8'
+  --   local iris = '#c4a7e7'
+  --   local highlight_low = '#21202e'
+  --   local highlight_med = '#403d52'
+  --   local highlight_high = '#524f67'
   --
-  --     enable = {
-  --       terminal = true,
-  --       legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
-  --       migrations = true, -- Handle deprecated options automatically
-  --     },
-  --
+  --   ---@diagnostic disable-next-line: missing-fields
+  --   require('tokyonight').setup {
   --     styles = {
-  --       bold = true,
-  --       italic = true,
-  --       transparency = false,
+  --       comments = { italic = false }, -- Disable italics in comments
   --     },
-  --
-  --     groups = {
-  --       border = 'muted',
-  --       link = 'love',
-  --       panel = 'surface',
-  --
-  --       error = 'love',
-  --       hint = 'iris',
-  --       info = 'foam',
-  --       note = 'pine',
-  --       todo = 'rose',
-  --       warn = 'gold',
-  --
-  --       git_add = 'foam',
-  --       git_change = 'rose',
-  --       git_delete = 'love',
-  --       git_dirty = 'rose',
-  --       git_ignore = 'muted',
-  --       git_merge = 'iris',
-  --       git_rename = 'pine',
-  --       git_stage = 'iris',
-  --       git_text = 'rose',
-  --       git_untracked = 'subtle',
-  --
-  --       h1 = 'iris',
-  --       h2 = 'foam',
-  --       h3 = 'rose',
-  --       h4 = 'gold',
-  --       h5 = 'pine',
-  --       h6 = 'foam',
-  --     },
-  --     highlight_groups = {
-  --       Operator = { fg = 'pine' },
-  --       Delimeter = { fg = '#82435B' },
-  --       ['@punctuation.delimiter'] = { fg = '#82435B' },
-  --       ['@keyword.operator'] = { fg = '#82435B' },
-  --       ['@module.builtin'] = { fg = '#82435B' },
-  --       ['@module'] = { fg = '#82435B' },
-  --       ['@punctuation.bracket'] = { fg = '#82435B' },
-  --       ['@punctuation.special'] = { fg = '#82435B' },
-  --       ['@tag.delimiter'] = { fg = '#82435B' },
-  --       ['@string.special.symbol'] = { fg = '#82435B' },
-  --       Number = { fg = 'rose' },
-  --       ['@function.builtin'] = { fg = 'love' },
-  --       pythonBuiltin = { fg = 'love' },
-  --       pythonAttribute = { fg = '#31748f' },
-  --       cBlock = { fg = '#82435B' },
-  --     },
-  --
-  --     before_highlight = function(group, highlight, palette) end,
+  --     on_colors = function(colors)
+  --       colors.bg = base
+  --       colors.popup = surface
+  --       colors.popup = surface
+  --       colors.green1 = '#31748f'
+  --       colors.green = '#f6c177'
+  --       colors.magenta = '#783E55'
+  --       colors.blue = '#c4a7e7'
+  --     end,
   --   }
-  --   vim.cmd.colorscheme 'rose-pine'
+  --
+  --   on_highlights =
+  --     function(hl, colors)
+  --       hl.Normal = { bg = colors.bg, fg = colors.fg }
+  --       hl.StatusLine = { bg = colors.bg_dark, fg = colors.fg }
+  --       hl.FloatBorder = { bg = colors.bg_float, fg = colors.fg_dark }
+  --       hl.Constant = {
+  --         fg = rose, -- change this to your desired color
+  --         bold = false,
+  --       }
+  --       -- You can override any highlight group you want here!
+  --     end,
+  --     -- Load the colorscheme here.
+  --     -- Like many other themes, this one has different styles, and you could load
+  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  --     vim.cmd.colorscheme 'tokyonight-night'
+  --   vim.api.nvim_set_hl(0, '@function', { fg = rose })
+  --   vim.api.nvim_set_hl(0, '@function.builtin', { fg = love })
+  --   vim.api.nvim_set_hl(0, '@function.builtin', { fg = love })
+  --   vim.api.nvim_set_hl(0, '@keyword', { fg = pine })
+  --   vim.api.nvim_set_hl(0, '@keyword.conditional.lua', { fg = pine })
+  --
+  --   vim.api.nvim_set_hl(0, '@keyword.function', { fg = pine })
+  --   vim.api.nvim_set_hl(0, '@type.definition', { fg = pine })
+  --   vim.api.nvim_set_hl(0, '@lsp.type.parameter', { fg = iris })
+  --   vim.api.nvim_set_hl(0, '@variable.parameter', { fg = iris })
+  --   vim.api.nvim_set_hl(0, '@variable.parameter', { fg = iris })
+  --   vim.api.nvim_set_hl(0, '@punctuation.bracket', { fg = '#31758F' })
+  --   vim.api.nvim_set_hl(0, '@punctuation.bracket.python', { fg = '#783E55' })
+  --   vim.api.nvim_set_hl(0, '@variable.member.lua', { fg = iris })
+  --
+  --   vim.api.nvim_set_hl(0, '@constant.builtin', { fg = pine })
+  --   vim.api.nvim_set_hl(0, '@type.builtin', { fg = pine })
+  --   vim.api.nvim_set_hl(0, '@keyword.repeat.python', { fg = pine })
+  --   vim.api.nvim_set_hl(0, '@keyword.conditional.python', { fg = pine })
+  --   vim.api.nvim_set_hl(0, '@boolean.python', { fg = rose })
+  --   vim.api.nvim_set_hl(0, '@keyword.conditional.arduino', { fg = pine })
+  --   vim.api.nvim_set_hl(0, '@keyword.conditional.arduino', { fg = pine })
+  --   vim.api.nvim_set_hl(0, 'TreesitterContext', { bg = surface }) -- example from Tokyo Night
+  --
+  --   vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#1f1d2e' }) -- darker than background
+  --
+  --   vim.api.nvim_set_hl(0, '@constructor.python', { fg = iris }) -- darker than background
+  --
+  --   vim.api.nvim_set_hl(0, 'Constant', { fg = rose, bold = false })
+  --   vim.api.nvim_set_hl(0, 'Type', { fg = foam, bold = false })
+  --
+  --   -- vim.api.nvim_set_hl(0, ', { fg = pine })
   -- end,
 }
