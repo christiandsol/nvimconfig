@@ -38,7 +38,7 @@ return {
       end, { desc = 'Add current file to Harpoon marks' })
 
       -- Set up ctrl+e to open Harpoon's guide UI
-      vim.keymap.set('n', '<C-H>', function()
+      vim.keymap.set('n', '<C-e>', function()
         require('harpoon.ui').toggle_quick_menu()
       end, { desc = 'Toggle Harpoon guide' })
     end,

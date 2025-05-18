@@ -213,10 +213,10 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
--- vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
--- vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
--- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
--- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
@@ -287,26 +287,6 @@ vim.keymap.set('n', '<C-k>', '<cmd>cnext<CR>zz')
 vim.keymap.set('n', '<C-j>', '<cmd>cprev<CR>zz')
 vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
 vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
-
-vim.keymap.set('n', '<leader>wh', '<C-w>h', { noremap = true })
-vim.keymap.set('n', '<leader>wj', '<C-w>j', { noremap = true })
-vim.keymap.set('n', '<leader>wk', '<C-w>k', { noremap = true })
-vim.keymap.set('n', '<leader>wl', '<C-w>l', { noremap = true })
-vim.keymap.set('n', '<leader>ww', '<C-w>w', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>ws', '<C-w>s', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>wx', '<C-w>x', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>wv', '<C-w>v', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>ww', '<C-w>w', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>wt', '<C-w>t', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>wq', '<C-w>q', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>wp', '<C-w>p', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>w+', '<C-w>+', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>w-', '<C-w>-', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>wo', '<C-w>o', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>w<', '<C-w><', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>w>', '<C-w>>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>w_', '<C-w>_', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>w|', '<C-w>|', { noremap = true })
 
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 -- [[ Configure and install plugins ]]
@@ -511,6 +491,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = '[S]earch [M]arks' })
       vim.keymap.set('n', '<C-p>', builtin.git_files, {})
       vim.keymap.set('n', '<leader>ps', function()
         builtin.grep_string { search = vim.fn.input 'Grep > ' }
