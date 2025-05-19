@@ -16,7 +16,12 @@ return {
         on_colors = function(colors)
           colors.bg = '#191724'
         end,
+        on_highlights = function(highlights, colors)
+          highlights.String = { fg = '#ff757f' } -- Replace with your desired color
+          highlights.Function = { fg = '#4fd6be' } -- Replace with your desired color
+        end,
       }
+
       vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
