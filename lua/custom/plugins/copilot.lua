@@ -1,3 +1,6 @@
 return {
-  { 'github/copilot.vim' },
+  { 'zbirenbaum/copilot.lua' },
+  {
+    'giuxtaposition/blink-cmp-copilot',
+  },
 }
