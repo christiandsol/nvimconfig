@@ -103,6 +103,8 @@ vim.g.loaded_python3_provider = 0
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+vim.opt.conceallevel = 2
+
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -181,12 +183,42 @@ vim.opt.relativenumber = true
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- OBSIDIAN remaps
+vim.keymap.set('n', '<leader>ot', '<cmd>ObsidianToday<cr>', { desc = '[O]bsidian [T]oday' })
+vim.keymap.set('n', '<leader>oy', '<cmd>ObsidianToday -1<cr>', { desc = '[O]bsidian [Y]esterday' })
+vim.keymap.set('n', '<leader>op', '<cmd>ObsidianPasteImg<cr>', { desc = '[O]bsidian [P]aste image' })
+vim.keymap.set('n', '<leader>oh', '<cmd>ObsidianTOC<cr>', { desc = '[O]bsidian Table Of [C]ontents' })
+vim.keymap.set('n', '<leader>oe', '<cmd>ObsidianExtractNote<cr>', { desc = '[O]bsidian [E]xtract Note' })
+vim.keymap.set('n', '<leader>ol', '<cmd>ObsidianLink<cr>', { desc = '[O]bsidian [L]ink' })
+vim.keymap.set('n', '<leader>or', '<cmd>ObsidianRename<cr>', { desc = '[O]bsidian [R]ename' })
+vim.keymap.set('n', '<leader>os', '<cmd>ObsidianSearch<cr>', { desc = '[O]bsidian [S]earch' })
+
+vim.keymap.set('n', '<leader>ch', function()
+  return require('obsidian').util.toggle_checkbox()
+end, { desc = '[C]heckbox [H]andle', buffer = true })
+
+vim.keymap.set('n', '<cr>', function()
+  return require('obsidian').util.smart_action()
+end, { desc = 'Obsidian smart action', buffer = true, expr = true })
+
+-- Overrides 'gf' to work with wiki links
+vim.keymap.set('n', 'gf', function()
+  return require('obsidian').util.gf_passthrough()
+end, { desc = 'Go to Obsidian link', buffer = true, expr = true, noremap = false })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
--- Toggle LSP diagnostics (warnings/errors) with <leader>t
+-- turn off dianostic messages for markdown files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  group = vim.api.nvim_create_augroup('kickstart-markdown-diagnostics', { clear = true }),
+  callback = function()
+    vim.diagnostic.enable(false)
+  end,
+})
 
--- Toggle diagnostics function
+-- Toggle LSP diagnostics (warnings/errors) with <leader>t
 local diagnostics_visible = true
 function toggle_diagnostics()
   diagnostics_visible = not diagnostics_visible
@@ -197,7 +229,7 @@ function toggle_diagnostics()
   end
 end
 -- Keymap to toggle diagnostics
-vim.keymap.set('n', '<leader>t', toggle_diagnostics, { desc = 'Toggle all diagnostics' })
+vim.keymap.set('n', '<leader>t', toggle_diagnostics, { desc = '[T]oggle all diagnostics' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -258,7 +290,7 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.keymap.set('n', '<leader>pv', function()
   require('oil').open()
-end)
+end, { desc = '[P]roject [V]ersion files' })
 -- vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
 
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
@@ -276,7 +308,7 @@ vim.keymap.set('n', '<leader>G', 'ggVG<leader>y')
 vim.keymap.set('n', '<leader>cw', function()
   local current_file = vim.fn.expand '%:p:h'
   vim.cmd.cd(current_file) -- safer than string concatenation
-end, { noremap = true, silent = true })
+end, { noremap = true, silent = true, desc = '[C]hange to current [W]orking' })
 
 vim.keymap.set('x', '<leader>p', [["_dP]])
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
@@ -287,10 +319,12 @@ vim.keymap.set('n', '<C-m>', '<cmd>Copilot disable<CR>')
 vim.keymap.set('n', '<C-c>', '<cmd>Copilot enable<CR>')
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 
+vim.keymap.set('n', '<C-k>', '<cmd>cnext<CR>zz')
+vim.keymap.set('n', '<C-j>', '<cmd>cprev<CR>zz')
 vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
 vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
 
-vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = '[U]ndotree' })
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -402,8 +436,12 @@ require('lazy').setup({
       -- Document existing key chains
       spec = {
         { '<leader>s', group = '[S]earch' },
-        { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>o', group = '[O]bsidian', mode = { 'n', 'v' } },
+        { '<leader>;', group = '[;]Debugging', mode = { 'n', 'v' } },
+        { '<leader>p', group = '[P]roject', mode = { 'n', 'v' } },
+        { '<leader>p', group = '[N]eogen', mode = { 'n', 'v' } },
+        { '<leader>g', group = '[G]it', mode = { 'n', 'v' } },
       },
     },
   },
@@ -496,7 +534,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = '[S]earch [M]arks' })
       vim.keymap.set('n', '<C-p>', builtin.git_files, {})
       vim.keymap.set('n', '<leader>ps', function()
-        builtin.grep_string { search = vim.fn.input 'Grep > ' }
+        builtin.grep_string { search = vim.fn.input 'Grep > ', desc = '[P]roject [S]earch' }
       end)
 
       -- Slightly advanced example of overriding default behavior and theme
