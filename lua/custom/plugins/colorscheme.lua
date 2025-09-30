@@ -1,30 +1,41 @@
 return {
+  -- Lazy
   {
-    'folke/tokyonight.nvim',
-    lazy = false,
-    priority = 1000,
-    opts = {},
+    'vague2k/vague.nvim',
     config = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      require('tokyonight').setup {
-        style = 'night',
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-        on_colors = function(colors)
-          colors.bg = '#191724'
-        end,
-        on_highlights = function(highlights, colors)
-          highlights.String = { fg = '#ff757f' } -- Replace with your desired color
-          highlights.Function = { fg = '#4fd6be' } -- Replace with your desired color
-        end,
+      -- NOTE: you do not need to call setup if you don't want to.
+      require('vague').setup {
+        -- optional configuration here
       }
-
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorschem 'vague'
     end,
   },
+  -- {
+  --   'folke/tokyonight.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {},
+  --   config = function()
+  --     -- Load the colorscheme here.
+  --     -- Like many other themes, this one has different styles, and you could load
+  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  --     require('tokyonight').setup {
+  --       style = 'night',
+  --       styles = {
+  --         comments = { italic = false }, -- Disable italics in comments
+  --       },
+  --       on_colors = function(colors)
+  --         colors.bg = '#191724'
+  --       end,
+  --       on_highlights = function(highlights, colors)
+  --         highlights.String = { fg = '#ff757f' } -- Replace with your desired color
+  --         highlights.Function = { fg = '#4fd6be' } -- Replace with your desired color
+  --       end,
+  --     }
+  --
+  --     vim.cmd.colorscheme 'tokyonight-night'
+  --   end,
+  -- },
   -- 'folke/tokyonight.nvim',
   -- priority = 1000, -- Make sure to load this before all the other start plugins.
   -- config = function()
